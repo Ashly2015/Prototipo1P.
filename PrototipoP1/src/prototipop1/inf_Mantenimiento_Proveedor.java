@@ -5,7 +5,7 @@
  */
 package prototipop1;
 
-import static MDI.mdi_Principal.labelusuario;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -64,184 +64,12 @@ public class inf_Mantenimiento_Proveedor extends javax.swing.JInternalFrame {
      * Creates new form inf_Mantenimiento_Cliente
      */
     
-    public void get_fecha(){
-        //Obtenemos la fecha
-        Calendar c1 = Calendar.getInstance();
-                fecha.setCalendar(c1);
-    }
     
-    public void get_usuario(){
-        try {
-            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("select * from usuario_hoteleria where nombre_usuario = ?");
-            pst.setString(1, labelusuario.getText().trim()); 
-
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-
-                lbusu.setText(rs.getString("id_usuario"));
-                
-
-
-        }
-        }catch (Exception e) {
-
-        
-        }
-    }
-    
-    public void bitacora_guardar(){
-        String prov=txt_nombre.getText();
-        String descrip="Registró al proveedor "+prov;
-       //Desciframos la fecha
-        java.util.Date fechaN = fecha.getDate();
-        long fecha = fechaN.getTime();
-        java.sql.Date dateN = new java.sql.Date(fecha);
-        
-        
-        //Obtenemos la hora
-                Calendar timec = Calendar.getInstance();
-                
-                int hora = timec.get(Calendar.HOUR_OF_DAY);
-                int minutos = timec.get(Calendar.MINUTE);
-                int segundos = timec.get(Calendar.SECOND);
-                
-                String time=hora+":"+minutos+":"+segundos;
-                
-        
-        try {
-            
-            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            //localhost es 127.0.0.1
-            PreparedStatement pst = cn.prepareStatement("insert into bitacora values(?,?,?,?,?)");
-
-            pst.setString(1, "0");
-            pst.setString(2, lbusu.getText().trim());
-            pst.setString(3, descrip);
-            pst.setString(4,dateN.toString().trim() );
-            pst.setString(5, time.trim());
-            
-            pst.executeUpdate();
-
-        } catch (SQLException e) {
-        }
-    }
-    public void bitacora_modificar(){
-        String prov=txt_nombre.getText();
-        String descrip="Modificó al proveedor "+prov;
-       //Desciframos la fecha
-        java.util.Date fechaN = fecha.getDate();
-        long fecha = fechaN.getTime();
-        java.sql.Date dateN = new java.sql.Date(fecha);
-        
-        
-        //Obtenemos la hora
-                Calendar timec = Calendar.getInstance();
-                
-                int hora = timec.get(Calendar.HOUR_OF_DAY);
-                int minutos = timec.get(Calendar.MINUTE);
-                int segundos = timec.get(Calendar.SECOND);
-                
-                String time=hora+":"+minutos+":"+segundos;
-                
-        
-        try {
-            
-            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            //localhost es 127.0.0.1
-            PreparedStatement pst = cn.prepareStatement("insert into bitacora values(?,?,?,?,?)");
-
-            pst.setString(1, "0");
-            pst.setString(2, lbusu.getText().trim());
-            pst.setString(3, descrip);
-            pst.setString(4,dateN.toString().trim() );
-            pst.setString(5, time.trim());
-            
-            pst.executeUpdate();
-
-        } catch (SQLException e) {
-        }
-    }
-    public void bitacora_eliminar(){
-       
-        String prov=txt_nombre.getText();
-        String descrip="Eliminó al proveedor "+prov;
-       //Desciframos la fecha
-        java.util.Date fechaN = fecha.getDate();
-        long fecha = fechaN.getTime();
-        java.sql.Date dateN = new java.sql.Date(fecha);
-        
-        
-        //Obtenemos la hora
-                Calendar timec = Calendar.getInstance();
-                
-                int hora = timec.get(Calendar.HOUR_OF_DAY);
-                int minutos = timec.get(Calendar.MINUTE);
-                int segundos = timec.get(Calendar.SECOND);
-                
-                String time=hora+":"+minutos+":"+segundos;
-                
-        
-        try {
-            
-            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            //localhost es 127.0.0.1
-            PreparedStatement pst = cn.prepareStatement("insert into bitacora values(?,?,?,?,?)");
-
-            pst.setString(1, "0");
-            pst.setString(2, lbusu.getText().trim());
-            pst.setString(3, descrip);
-            pst.setString(4,dateN.toString().trim() );
-            pst.setString(5, time.trim());
-            
-            pst.executeUpdate();
-
-        } catch (SQLException e) {
-        }
-    }
-    public void bitacora_buscar(){
-        String prov=txt_nombre.getText();
-        String descrip="Buscó al proveedor "+prov;
-       //Desciframos la fecha
-        java.util.Date fechaN = fecha.getDate();
-        long fecha = fechaN.getTime();
-        java.sql.Date dateN = new java.sql.Date(fecha);
-        
-        
-        //Obtenemos la hora
-                Calendar timec = Calendar.getInstance();
-                
-                int hora = timec.get(Calendar.HOUR_OF_DAY);
-                int minutos = timec.get(Calendar.MINUTE);
-                int segundos = timec.get(Calendar.SECOND);
-                
-                String time=hora+":"+minutos+":"+segundos;
-                
-        
-        try {
-            
-            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
-            //localhost es 127.0.0.1
-            PreparedStatement pst = cn.prepareStatement("insert into bitacora values(?,?,?,?,?)");
-
-            pst.setString(1, "0");
-            pst.setString(2, lbusu.getText().trim());
-            pst.setString(3, descrip);
-            pst.setString(4,dateN.toString().trim() );
-            pst.setString(5, time.trim());
-            
-            pst.executeUpdate();
-
-        } catch (SQLException e) {
-        }
-    }
     
     public inf_Mantenimiento_Proveedor() {
         initComponents();
         tablas();
-        get_fecha();
-        get_usuario();
+       
         
     }
 
@@ -255,6 +83,19 @@ public class inf_Mantenimiento_Proveedor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lbusu = new javax.swing.JLabel();
+        btnModificar = new javax.swing.JButton();
+        label3 = new javax.swing.JLabel();
+        txtbuscado = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl = new javax.swing.JTable();
+        btnEliminar = new javax.swing.JButton();
+        txt_direccion = new javax.swing.JTextField();
+        btnRegistrar = new javax.swing.JButton();
+        label5 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        label1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -263,22 +104,286 @@ public class inf_Mantenimiento_Proveedor extends javax.swing.JInternalFrame {
         setTitle("Mantenimiento Proveedor");
         setVisible(true);
 
+        btnModificar.setText("Modificar");
+        btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label3.setText("Nombre:");
+
+        txt_nombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txt_nombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txt_nombre.setOpaque(false);
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        tbl.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Proveedor", "Nombre", "Direccion"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbl);
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setEnabled(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        txt_direccion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txt_direccion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txt_direccion.setOpaque(false);
+
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label5.setText("Direccion:");
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label1.setText("Proveedor");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1032, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label3)
+                            .addComponent(label5))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(txt_nombre))))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(label1)
+                        .addGap(294, 294, 294))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRegistrar)
+                            .addComponent(btnEliminar)
+                            .addComponent(btnModificar))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar)
+                            .addComponent(btnLimpiar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(label1)
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        try {
+            String ID = txtbuscado.getText().trim();
+
+            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("update proveedor set  nombre = ?,direccion = ? where id_proveedor =" + ID);
+
+            pst.setString(1, txt_nombre.getText());
+            pst.setString(2, txt_direccion.getText());
+
+            pst.executeUpdate();
+
+          
+            JOptionPane.showMessageDialog(this, "¡MODIFICACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            txt_nombre.setText("");
+            txt_direccion.setText("");
+            txt_direccion.setText("");
+
+            txtbuscado.setText("");
+            btnRegistrar.setEnabled(true);
+            btnModificar.setEnabled(false);
+            btnEliminar.setEnabled(false);
+            tablas();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error en Modificacion", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txt_nombre.setText("");
+        txt_direccion.setText("");
+        txtbuscado.setText("");
+        btnRegistrar.setEnabled(true);
+        btnModificar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("delete from proveedor where id_proveedor = ?");
+
+            pst.setString(1, txtbuscado.getText().trim());
+            pst.executeUpdate();
+
+           
+            JOptionPane.showMessageDialog(this, "¡ELIMINACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            txt_nombre.setText("");
+
+            txt_direccion.setText("");
+            txtbuscado.setText("");
+            btnRegistrar.setEnabled(true);
+            btnModificar.setEnabled(false);
+            btnEliminar.setEnabled(false);
+            tablas();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error en Eliminacion", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
+            //localhost es 127.0.0.1
+            PreparedStatement pst = cn.prepareStatement("insert into proveedor values(?,?,?)");
+
+            pst.setString(1, "0");
+            pst.setString(2, txt_nombre.getText());
+            pst.setString(3, txt_direccion.getText());
+          
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            txt_nombre.setText("");
+            txt_direccion.setText("");
+            txt_direccion.setText("");
+
+            txtbuscado.setText("");
+            tablas();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error en registro", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Connection cn = DriverManager.getConnection(mdi_Principal.BD, mdi_Principal.Usuario, mdi_Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("select * from proveedor where id_proveedor =?");
+            pst.setString(1, txtbuscado.getText().trim());
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                txt_nombre.setText(rs.getString("nombre"));
+                txt_direccion.setText(rs.getString("direccion"));
+
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
+                btnRegistrar.setEnabled(false);
+                tablas();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Proveedor no registrado.");
+            }
+
+        } catch (Exception e) {
+
+        }
+        // tablas();
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label3;
+    private javax.swing.JLabel label5;
     private javax.swing.JLabel lbusu;
+    private javax.swing.JTable tbl;
+    private javax.swing.JTextField txt_direccion;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables
 }
